@@ -1,0 +1,38 @@
+.account-container {
+  padding: 20px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  max-width: 800px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.account-container h2 {
+  color: #ffc107;
+  margin-bottom: 20px;
+}
+
+.account-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.account-container li {
+  margin: 10px 0;
+}
+
+.account-container a {
+  display: block;
+  background-color: #2e7d32;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.account-container a:hover {
+  background-color: #007bff;
+}

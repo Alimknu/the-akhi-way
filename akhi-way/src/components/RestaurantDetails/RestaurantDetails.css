@@ -1,0 +1,188 @@
+.restaurant-details {
+  padding: 20px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+}
+
+.restaurant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.restaurant-name {
+  font-size: 32px;
+  color: #ffc107;
+}
+
+.view-menu-btn {
+  background-color: #2e7d32;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-menu-btn:hover {
+  background-color: #007bff;
+}
+
+.restaurant-rating {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.stars {
+  color: #ffc107;
+}
+
+.reviews,
+.price,
+.cuisine-type {
+  margin: 0 10px;
+}
+
+.restaurant-description {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.restaurant-images {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.restaurant-images img {
+  max-width: 150px;
+  border-radius: 5px;
+}
+
+.restaurant-map img {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.restaurant-info p {
+  margin: 5px 0;
+  text-align: center;
+}
+
+.expand-reviews-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #f8c20e;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.expand-reviews-btn:hover {
+  background-color: #e0a90d;
+}
+
+.expand-reviews-btn:focus {
+  outline: none;
+}
+
+.menu-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.menu-popup-content {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.close-menu-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+}
+
+.close-menu-btn:hover {
+  background-color: darkred;
+}
+
+.restaurant-rating,
+.restaurant-description,
+.restaurant-images,
+.restaurant-map,
+.restaurant-info,
+.expand-reviews-btn {
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .restaurant-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .restaurant-images {
+    justify-content: center;
+  }
+
+  .restaurant-images img {
+    width: 100%;
+    height: auto;
+  }
+
+  .restaurant-info p {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .restaurant-rating {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reviews,
+  .price,
+  .cuisine-type {
+    margin: 5px 0;
+  }
+}

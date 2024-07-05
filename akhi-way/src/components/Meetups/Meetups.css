@@ -1,0 +1,98 @@
+.meetups-container {
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  color: var(--text-color);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.meetup-item {
+  background-color: #2e2e2e;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meetup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.meetup-form label {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+}
+
+.meetup-form input {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #b0bec5;
+  border-radius: 5px;
+  background-color: #2e2e2e;
+  color: var(--text-color);
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.form-navigation button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-navigation button:hover {
+  background-color: var(--secondary-color);
+}
+
+.form-navigation button:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .meetups-container {
+    padding: 15px;
+  }
+
+  .meetup-form input {
+    margin-top: 10px;
+  }
+}

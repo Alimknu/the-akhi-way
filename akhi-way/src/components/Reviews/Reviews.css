@@ -1,0 +1,176 @@
+.reviews-section {
+  margin-top: 20px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.restaurant-review {
+  background-color: #2e7d32;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.review-stars {
+  color: #ffc107;
+}
+
+.review-date {
+  color: #b0bec5;
+}
+
+.review-summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.review-rating {
+  color: #ffc107;
+}
+
+.review-author {
+  color: #b0bec5;
+}
+
+.review-text {
+  margin: 0;
+}
+
+.review-form {
+  margin-top: 20px;
+  background-color: #ffc107;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.review-form h3 {
+  margin: 0;
+  color: #121212;
+  text-align: center;
+}
+
+.review-form .review-stars {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  background-color: #2e7d32;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.review-form .review-stars .star {
+  cursor: pointer;
+  font-size: 2rem;
+  color: #ccc;
+}
+
+.review-form .review-stars .star.selected {
+  color: #ffc107;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #121212;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.submit-review-btn {
+  background-color: #2e7d32;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.submit-review-btn:hover {
+  background-color: #007bff;
+}
+
+.stars {
+  display: flex;
+}
+
+.stars .on {
+  color: gold;
+}
+
+.stars .off {
+  color: #e4e5e9;
+}
+
+.review-form .stars {
+  background-color: #32a852;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.submit-review-btn {
+  background-color: #32a852;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.submit-review-btn:hover {
+  background-color: #278a42;
+}
+
+@media (max-width: 768px) {
+  .review-header,
+  .review-summary {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .review-stars,
+  .review-date,
+  .review-rating,
+  .review-author {
+    margin: 5px 0;
+  }
+
+  .review-form .review-stars {
+    padding: 5px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 14px;
+  }
+}
