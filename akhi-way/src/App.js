@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import RestaurantList from "./components/RestaurantList/RestaurantList";
@@ -12,9 +13,11 @@ import DietaryPreferences from "./components/DietaryPreferences/DietaryPreferenc
 import Meetups from "./components/Meetups/Meetups";
 import "./components/global.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import "./i18n/i18n";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <Router>

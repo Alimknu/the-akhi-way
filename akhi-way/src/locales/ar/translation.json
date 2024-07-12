@@ -1,0 +1,21 @@
+{
+  "Upcoming Meetups": "اللقاءات القادمة",
+  "Restaurant": "مطعم",
+  "Date": "تاريخ",
+  "Time": "وقت",
+  "Friends": "أصدقاء",
+  "No meetups scheduled.": "لا توجد لقاءات مجدولة.",
+  "Plan a New Meetup": "تخطيط لقاء جديد",
+  "Previous": "السابق",
+  "Next": "التالي",
+  "Submit": "إرسال",
+  "Restaurant cannot be empty.": "لا يمكن أن يكون المطعم فارغًا.",
+  "Date cannot be empty.": "لا يمكن أن يكون التاريخ فارغًا.",
+  "Date cannot be today or in the past.": "لا يمكن أن يكون التاريخ اليوم أو في الماضي.",
+  "Time cannot be empty.": "لا يمكن أن يكون الوقت فارغًا.",
+  "Friends' emails cannot be empty.": "لا يمكن أن تكون رسائل البريد الإلكتروني للأصدقاء فارغة.",
+  "Please enter valid email addresses.": "يرجى إدخال عناوين بريد إلكتروني صالحة.",
+  "Meetup saved and shared with friends!": "تم حفظ اللقاء ومشاركته مع الأصدقاء!",
+  "Are you sure you want to cancel this meetup? A cancellation email will be sent to all recipients.": "هل أنت متأكد أنك تريد إلغاء هذا اللقاء؟ سيتم إرسال بريد إلكتروني للإلغاء إلى جميع المستلمين.",
+  "Meetup cancelled and email notification sent to all friends.": "تم إلغاء اللقاء وإرسال إشعار بالبريد الإلكتروني إلى جميع الأصدقاء."
+}

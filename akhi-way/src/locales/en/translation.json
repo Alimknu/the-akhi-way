@@ -1,0 +1,21 @@
+{
+  "Upcoming Meetups": "Upcoming Meetups",
+  "Restaurant": "Restaurant",
+  "Date": "Date",
+  "Time": "Time",
+  "Friends": "Friends",
+  "No meetups scheduled.": "No meetups scheduled.",
+  "Plan a New Meetup": "Plan a New Meetup",
+  "Previous": "Previous",
+  "Next": "Next",
+  "Submit": "Submit",
+  "Restaurant cannot be empty.": "Restaurant cannot be empty.",
+  "Date cannot be empty.": "Date cannot be empty.",
+  "Date cannot be today or in the past.": "Date cannot be today or in the past.",
+  "Time cannot be empty.": "Time cannot be empty.",
+  "Friends' emails cannot be empty.": "Friends' emails cannot be empty.",
+  "Please enter valid email addresses.": "Please enter valid email addresses.",
+  "Meetup saved and shared with friends!": "Meetup saved and shared with friends!",
+  "Are you sure you want to cancel this meetup? A cancellation email will be sent to all recipients.": "Are you sure you want to cancel this meetup? A cancellation email will be sent to all recipients.",
+  "Meetup cancelled and email notification sent to all friends.": "Meetup cancelled and email notification sent to all friends."
+}

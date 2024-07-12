@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./Meetups.css";
+import { useTranslation } from "react-i18next";
 import BackButton from "../BackButton/BackButton";
+import "./Meetups.css";
 
 const Meetups = () => {
+  const { t } = useTranslation();
   const [meetups, setMeetups] = useState([]);
   const [step, setStep] = useState(1);
   const [restaurant, setRestaurant] = useState("");
@@ -20,23 +22,23 @@ const Meetups = () => {
   const validate = () => {
     const errors = {};
     if (!restaurant.trim()) {
-      errors.restaurant = "Restaurant cannot be empty.";
+      errors.restaurant = t("Restaurant cannot be empty.");
     }
     if (!date) {
-      errors.date = "Date cannot be empty.";
+      errors.date = t("Date cannot be empty.");
     } else if (new Date(date) < new Date().setHours(0, 0, 0, 0)) {
-      errors.date = "Date cannot be today or in the past.";
+      errors.date = t("Date cannot be today or in the past.");
     }
     if (!time) {
-      errors.time = "Time cannot be empty.";
+      errors.time = t("Time cannot be empty.");
     }
     if (!friends.trim()) {
-      errors.friends = "Friends' emails cannot be empty.";
+      errors.friends = t("Friends' emails cannot be empty.");
     } else {
       const emailArray = friends.split(",");
       for (let email of emailArray) {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-          errors.friends = "Please enter valid email addresses.";
+          errors.friends = t("Please enter valid email addresses.");
           break;
         }
       }
@@ -47,17 +49,17 @@ const Meetups = () => {
   const handleNextStep = () => {
     const validationErrors = {};
     if (step === 1 && !restaurant.trim()) {
-      validationErrors.restaurant = "Restaurant cannot be empty.";
+      validationErrors.restaurant = t("Restaurant cannot be empty.");
     }
     if (step === 2) {
       if (!date) {
-        validationErrors.date = "Date cannot be empty.";
+        validationErrors.date = t("Date cannot be empty.");
       } else if (new Date(date) < new Date().setHours(0, 0, 0, 0)) {
-        validationErrors.date = "Date cannot be today or in the past.";
+        validationErrors.date = t("Date cannot be today or in the past.");
       }
     }
     if (step === 3 && !time) {
-      validationErrors.time = "Time cannot be empty.";
+      validationErrors.time = t("Time cannot be empty.");
     }
     setErrors(validationErrors);
 
@@ -87,13 +89,13 @@ const Meetups = () => {
     setDate("");
     setTime("");
     setFriends("");
-    alert("Meetup saved and shared with friends!");
+    alert(t("Meetup saved and shared with friends!"));
   };
 
   const handleDelete = (index) => {
     if (
       window.confirm(
-        "Are you sure you want to cancel this meetup? A cancellation email will be sent to all recipients."
+        t("Are you sure you want to cancel this meetup? A cancellation email will be sent to all recipients.")
       )
     ) {
       const user = localStorage.getItem("currentUser");
@@ -101,7 +103,7 @@ const Meetups = () => {
       setMeetups(updatedMeetups);
       localStorage.setItem(`${user}_meetups`, JSON.stringify(updatedMeetups));
       // Simulate email notification
-      alert("Meetup cancelled and email notification sent to all friends.");
+      alert(t("Meetup cancelled and email notification sent to all friends."));
     }
   };
 
@@ -123,13 +125,14 @@ const Meetups = () => {
   return (
     <div className="meetups-container">
       <BackButton />
-      <h2>Upcoming Meetups</h2>
+      <h2>{t("Upcoming Meetups")}</h2>
       {meetups.length > 0 ? (
         <ul>
           {meetups.map((meetup, index) => (
             <li key={index} className="meetup-item">
               <span>
-                Restaurant: {meetup.restaurant}, Date: {meetup.date}, Time: {meetup.time}, Friends: {meetup.friends}
+                {t("Restaurant")}: {meetup.restaurant}, {t("Date")}: {meetup.date}, {t("Time")}: {meetup.time},{" "}
+                {t("Friends")}: {meetup.friends}
               </span>
               <button className="delete-button" onClick={() => handleDelete(index)}>
                 X
@@ -138,11 +141,11 @@ const Meetups = () => {
           ))}
         </ul>
       ) : (
-        <p>No meetups scheduled.</p>
+        <p>{t("No meetups scheduled.")}</p>
       )}
 
-      <h2>Plan a New Meetup</h2>
-      <div className="spacer"></div>
+      <h2>{t("Plan a New Meetup")}</h2>
+      <div class="spacer"></div>
       <form className="meetup-form" onSubmit={handleSubmit}>
         <div className="progress-bar">
           <div className="progress" style={{ width: progressWidth() }}></div>
@@ -154,12 +157,12 @@ const Meetups = () => {
         {step === 1 && (
           <div className="form-step">
             <label>
-              Restaurant:
+              {t("Restaurant")}:
               <input
                 type="text"
                 value={restaurant}
                 onChange={(e) => setRestaurant(e.target.value)}
-                placeholder="Enter restaurant name"
+                placeholder={t("Enter restaurant name")}
                 required
               />
               {errors.restaurant && <p className="error">{errors.restaurant}</p>}
@@ -169,12 +172,12 @@ const Meetups = () => {
         {step === 2 && (
           <div className="form-step">
             <label>
-              Date:
+              {t("Date")}:
               <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                placeholder="Select a date"
+                placeholder={t("Select a date")}
                 required
               />
               {errors.date && <p className="error">{errors.date}</p>}
@@ -184,12 +187,12 @@ const Meetups = () => {
         {step === 3 && (
           <div className="form-step">
             <label>
-              Time:
+              {t("Time")}:
               <input
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                placeholder="Select a time"
+                placeholder={t("Select a time")}
                 required
               />
               {errors.time && <p className="error">{errors.time}</p>}
@@ -199,30 +202,31 @@ const Meetups = () => {
         {step === 4 && (
           <div className="form-step">
             <label>
-              Friends (emails):
+              {t("Friends")}:
               <input
                 type="text"
                 value={friends}
                 onChange={(e) => setFriends(e.target.value)}
-                placeholder="Enter friends' emails (separated by commas)"
+                placeholder={t("Enter friends' emails, separated by commas")}
                 required
               />
               {errors.friends && <p className="error">{errors.friends}</p>}
             </label>
           </div>
         )}
-        <div className="form-navigation">
-          {step > 1 && (
-            <button type="button" onClick={handlePreviousStep}>
-              Previous
+        <div className="button-container">
+          <button type="button" className="previous-button" onClick={handlePreviousStep}>
+            {t("Previous")}
+          </button>
+          {step < 4 ? (
+            <button type="button" className="next-button" onClick={handleNextStep}>
+              {t("Next")}
+            </button>
+          ) : (
+            <button type="submit" className="submit-button">
+              {t("Submit")}
             </button>
           )}
-          {step < 4 && (
-            <button type="button" onClick={handleNextStep}>
-              Next
-            </button>
-          )}
-          {step === 4 && <button type="submit">Save Meetup</button>}
         </div>
       </form>
     </div>

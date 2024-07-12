@@ -47,10 +47,7 @@
 .navbar-account {
   display: flex;
   align-items: center;
-  background-color: #2e7d32;
-  margin: 0;
-  padding: 0;
-  border-radius: 5px;
+  gap: 10px; /* Adjust gap to your preference */
 }
 
 .navbar-links li {
@@ -84,4 +81,19 @@
 
 .navbar-account a:hover {
   background-color: #2e7d32;
+}
+
+.language-select {
+  background-color: #2e7d32;
+  color: #ffffff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.language-select option {
+  background-color: #121212;
+  color: #ffffff;
 }
