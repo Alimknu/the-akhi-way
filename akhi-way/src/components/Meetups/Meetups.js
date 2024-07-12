@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Meetups.css";
+import BackButton from "../BackButton/BackButton";
 
 const Meetups = () => {
   const [meetups, setMeetups] = useState([]);
@@ -121,6 +122,7 @@ const Meetups = () => {
 
   return (
     <div className="meetups-container">
+      <BackButton />
       <h2>Upcoming Meetups</h2>
       {meetups.length > 0 ? (
         <ul>
@@ -140,7 +142,7 @@ const Meetups = () => {
       )}
 
       <h2>Plan a New Meetup</h2>
-      <div class="spacer"></div>
+      <div className="spacer"></div>
       <form className="meetup-form" onSubmit={handleSubmit}>
         <div className="progress-bar">
           <div className="progress" style={{ width: progressWidth() }}></div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./DietaryPreferences.css";
+import BackButton from "../BackButton/BackButton";
 
 const DietaryPreferences = () => {
   const [dietaryRestrictions, setDietaryRestrictions] = useState("");
@@ -53,6 +54,7 @@ const DietaryPreferences = () => {
 
   return (
     <div className="dietary-preferences-container">
+      <BackButton />
       <h2>Dietary Preferences</h2>
       <form className="dietary-preferences-form" onSubmit={handleSubmit}>
         <label>

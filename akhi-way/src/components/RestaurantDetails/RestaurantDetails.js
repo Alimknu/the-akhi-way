@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import restaurants from "../Data/RestaurantsData";
 import "./RestaurantDetails.css";
 import Reviews from "../Reviews/Reviews";
+import BackButton from "../BackButton/BackButton";
 
 function RestaurantDetails() {
   const { id } = useParams();
@@ -16,6 +17,7 @@ function RestaurantDetails() {
 
   return (
     <div className="restaurant-details">
+      <BackButton />
       <div className="restaurant-header">
         <h1 className="restaurant-name">{restaurant.name}</h1>
         <button className="view-menu-btn" onClick={() => setShowMenu(true)}>
