@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Tooltip } from "react-tooltip";
 import "./Meetups.css";
 
 const Meetups = () => {
@@ -8,6 +9,7 @@ const Meetups = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [friends, setFriends] = useState("");
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const user = localStorage.getItem("currentUser");
@@ -15,10 +17,53 @@ const Meetups = () => {
     setMeetups(savedMeetups);
   }, []);
 
+  const validate = () => {
+    const errors = {};
+    if (!restaurant.trim()) {
+      errors.restaurant = "Restaurant cannot be empty.";
+    }
+    if (!date) {
+      errors.date = "Date cannot be empty.";
+    } else if (new Date(date) < new Date().setHours(0, 0, 0, 0)) {
+      errors.date = "Date cannot be in the past.";
+    }
+    if (!time) {
+      errors.time = "Time cannot be empty.";
+    }
+    if (!friends.trim()) {
+      errors.friends = "Friends' emails cannot be empty.";
+    } else {
+      const emailArray = friends.split(",");
+      for (let email of emailArray) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+          errors.friends = "Please enter valid email addresses.";
+          break;
+        }
+      }
+    }
+    return errors;
+  };
+
   const handleNextStep = () => {
-    if (step === 1 && restaurant) setStep(2);
-    else if (step === 2 && date) setStep(3);
-    else if (step === 3 && time) setStep(4);
+    const validationErrors = {};
+    if (step === 1 && !restaurant.trim()) {
+      validationErrors.restaurant = "Restaurant cannot be empty.";
+    }
+    if (step === 2) {
+      if (!date) {
+        validationErrors.date = "Date cannot be empty.";
+      } else if (new Date(date) < new Date().setHours(0, 0, 0, 0)) {
+        validationErrors.date = "Date cannot be in the past.";
+      }
+    }
+    if (step === 3 && !time) {
+      validationErrors.time = "Time cannot be empty.";
+    }
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      setStep(step + 1);
+    }
   };
 
   const handlePreviousStep = () => {
@@ -27,31 +72,51 @@ const Meetups = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (step === 4 && friends) {
-      const meetup = { restaurant, date, time, friends };
-      const user = localStorage.getItem("currentUser");
-      const updatedMeetups = [...meetups, meetup];
-      setMeetups(updatedMeetups);
-      localStorage.setItem(`${user}_meetups`, JSON.stringify(updatedMeetups));
-      setStep(1); // Reset the form
-      setRestaurant("");
-      setDate("");
-      setTime("");
-      setFriends("");
-      alert("Meetup saved and shared with friends!");
-    } else {
-      alert("Please complete all fields before saving the meetup.");
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
     }
+    const meetup = { restaurant, date, time, friends };
+    const user = localStorage.getItem("currentUser");
+    const updatedMeetups = [...meetups, meetup];
+    setMeetups(updatedMeetups);
+    localStorage.setItem(`${user}_meetups`, JSON.stringify(updatedMeetups));
+    setStep(1); // Reset the form
+    setRestaurant("");
+    setDate("");
+    setTime("");
+    setFriends("");
+    alert("Meetup saved and shared with friends!");
   };
 
   const handleDelete = (index) => {
-    if (window.confirm("Are you sure you want to cancel this meetup? A cancellation email will be sent to all recipients.")) {
+    if (
+      window.confirm(
+        "Are you sure you want to cancel this meetup? A cancellation email will be sent to all recipients."
+      )
+    ) {
       const user = localStorage.getItem("currentUser");
       const updatedMeetups = meetups.filter((_, i) => i !== index);
       setMeetups(updatedMeetups);
       localStorage.setItem(`${user}_meetups`, JSON.stringify(updatedMeetups));
       // Simulate email notification
       alert("Meetup cancelled and email notification sent to all friends.");
+    }
+  };
+
+  const progressWidth = () => {
+    switch (step) {
+      case 1:
+        return "0%";
+      case 2:
+        return "33%";
+      case 3:
+        return "66%";
+      case 4:
+        return "100%";
+      default:
+        return "0%";
     }
   };
 
@@ -77,6 +142,13 @@ const Meetups = () => {
 
       <h2>Plan a New Meetup</h2>
       <form className="meetup-form" onSubmit={handleSubmit}>
+        <div className="progress-bar">
+          <div className="progress" style={{ width: progressWidth() }}></div>
+          <div className={`progress-step ${step >= 1 ? "active" : ""}`} data-step="1"></div>
+          <div className={`progress-step ${step >= 2 ? "active" : ""}`} data-step="2"></div>
+          <div className={`progress-step ${step >= 3 ? "active" : ""}`} data-step="3"></div>
+          <div className={`progress-step ${step >= 4 ? "active" : ""}`} data-step="4"></div>
+        </div>
         {step === 1 && (
           <div className="form-step">
             <label>
@@ -88,6 +160,9 @@ const Meetups = () => {
                 placeholder="Enter restaurant name"
                 required
               />
+              <span data-tip="Enter the name of the restaurant where you plan to meet." className="help-icon">?</span>
+              <Tooltip place="right" type="dark" effect="solid"/>
+              {errors.restaurant && <p className="error">{errors.restaurant}</p>}
             </label>
           </div>
         )}
@@ -102,6 +177,9 @@ const Meetups = () => {
                 placeholder="Select a date"
                 required
               />
+              <span data-tip="Choose a date for the meetup. The date cannot be in the past." className="help-icon">?</span>
+              <Tooltip place="right" type="dark" effect="solid"/>
+              {errors.date && <p className="error">{errors.date}</p>}
             </label>
           </div>
         )}
@@ -116,6 +194,9 @@ const Meetups = () => {
                 placeholder="Select a time"
                 required
               />
+              <span data-tip="Choose a time for the meetup." className="help-icon">?</span>
+              <Tooltip place="right" type="dark" effect="solid"/>
+              {errors.time && <p className="error">{errors.time}</p>}
             </label>
           </div>
         )}
@@ -130,6 +211,9 @@ const Meetups = () => {
                 placeholder="Enter friends' emails (separated by commas)"
                 required
               />
+              <span data-tip="Enter email addresses of friends, separated by commas." className="help-icon">?</span>
+              <Tooltip place="right" type="dark" effect="solid"/>
+              {errors.friends && <p className="error">{errors.friends}</p>}
             </label>
           </div>
         )}
