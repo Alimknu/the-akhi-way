@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Tooltip } from "react-tooltip";
 import "./Meetups.css";
 
 const Meetups = () => {
@@ -25,7 +24,7 @@ const Meetups = () => {
     if (!date) {
       errors.date = "Date cannot be empty.";
     } else if (new Date(date) < new Date().setHours(0, 0, 0, 0)) {
-      errors.date = "Date cannot be in the past.";
+      errors.date = "Date cannot be today or in the past.";
     }
     if (!time) {
       errors.time = "Time cannot be empty.";
@@ -53,7 +52,7 @@ const Meetups = () => {
       if (!date) {
         validationErrors.date = "Date cannot be empty.";
       } else if (new Date(date) < new Date().setHours(0, 0, 0, 0)) {
-        validationErrors.date = "Date cannot be in the past.";
+        validationErrors.date = "Date cannot be today or in the past.";
       }
     }
     if (step === 3 && !time) {
@@ -141,6 +140,7 @@ const Meetups = () => {
       )}
 
       <h2>Plan a New Meetup</h2>
+      <div class="spacer"></div>
       <form className="meetup-form" onSubmit={handleSubmit}>
         <div className="progress-bar">
           <div className="progress" style={{ width: progressWidth() }}></div>
@@ -160,8 +160,6 @@ const Meetups = () => {
                 placeholder="Enter restaurant name"
                 required
               />
-              <span data-tip="Enter the name of the restaurant where you plan to meet." className="help-icon">?</span>
-              <Tooltip place="right" type="dark" effect="solid"/>
               {errors.restaurant && <p className="error">{errors.restaurant}</p>}
             </label>
           </div>
@@ -177,8 +175,6 @@ const Meetups = () => {
                 placeholder="Select a date"
                 required
               />
-              <span data-tip="Choose a date for the meetup. The date cannot be in the past." className="help-icon">?</span>
-              <Tooltip place="right" type="dark" effect="solid"/>
               {errors.date && <p className="error">{errors.date}</p>}
             </label>
           </div>
@@ -194,8 +190,6 @@ const Meetups = () => {
                 placeholder="Select a time"
                 required
               />
-              <span data-tip="Choose a time for the meetup." className="help-icon">?</span>
-              <Tooltip place="right" type="dark" effect="solid"/>
               {errors.time && <p className="error">{errors.time}</p>}
             </label>
           </div>
@@ -211,8 +205,6 @@ const Meetups = () => {
                 placeholder="Enter friends' emails (separated by commas)"
                 required
               />
-              <span data-tip="Enter email addresses of friends, separated by commas." className="help-icon">?</span>
-              <Tooltip place="right" type="dark" effect="solid"/>
               {errors.friends && <p className="error">{errors.friends}</p>}
             </label>
           </div>

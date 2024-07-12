@@ -86,7 +86,7 @@
   display: block;
   margin: 20px auto;
   padding: 10px 20px;
-  background-color: #f8c20e;
+  background-color: #2e7d32;
   border: none;
   border-radius: 5px;
   color: #ffffff;
@@ -97,7 +97,7 @@
 }
 
 .expand-reviews-btn:hover {
-  background-color: #e0a90d;
+  background-color: #007bff;
 }
 
 .expand-reviews-btn:focus {

@@ -118,4 +118,18 @@ export const addReview = (restaurantId, newReview) => {
   }
 };
 
+export const updateReview = (restaurantId, reviewIndex, updatedReview) => {
+  const restaurant = restaurants.find((r) => r.id === restaurantId);
+  if (restaurant) {
+    restaurant.reviewsData[reviewIndex] = updatedReview;
+  }
+};
+
+export const deleteReview = (restaurantId, reviewIndex) => {
+  const restaurant = restaurants.find((r) => r.id === restaurantId);
+  if (restaurant) {
+    restaurant.reviewsData.splice(reviewIndex, 1);
+  }
+};
+
 export default restaurants;

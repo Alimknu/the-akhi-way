@@ -18,6 +18,11 @@ const RestaurantList = () => {
     });
   };
 
+  const handleClearFilters = () => {
+    setSearchTerm("");
+    setPriceRange("");
+  };
+
   const filteredRestaurants = handleSearch();
 
   return (
@@ -38,6 +43,9 @@ const RestaurantList = () => {
           <option value="$$$$">$$$$</option>
         </select>
         <button onClick={handleSearch}>Search</button>
+        <button onClick={handleClearFilters} className="clear-filters-btn">
+          Clear Filters
+        </button>
       </div>
       <div className="restaurant-results">
         {filteredRestaurants.map((restaurant) => (

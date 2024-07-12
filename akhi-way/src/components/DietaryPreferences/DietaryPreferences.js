@@ -6,6 +6,7 @@ const DietaryPreferences = () => {
   const [preferredCuisines, setPreferredCuisines] = useState("");
   const [calorieIntake, setCalorieIntake] = useState("");
   const [preferencesSaved, setPreferencesSaved] = useState(false);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const user = localStorage.getItem("currentUser");
@@ -18,8 +19,27 @@ const DietaryPreferences = () => {
     }
   }, []);
 
+  const validate = () => {
+    const errors = {};
+    if (!dietaryRestrictions.trim()) {
+      errors.dietaryRestrictions = "Dietary restrictions cannot be empty.";
+    }
+    if (!preferredCuisines.trim()) {
+      errors.preferredCuisines = "Preferred cuisines cannot be empty.";
+    }
+    if (!calorieIntake || calorieIntake <= 0) {
+      errors.calorieIntake = "Calorie intake must be a positive number.";
+    }
+    return errors;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
     const user = localStorage.getItem("currentUser");
     const preferences = {
       dietaryRestrictions,
@@ -38,14 +58,17 @@ const DietaryPreferences = () => {
         <label>
           Dietary Restrictions:
           <input type="text" value={dietaryRestrictions} onChange={(e) => setDietaryRestrictions(e.target.value)} />
+          {errors.dietaryRestrictions && <p className="error">{errors.dietaryRestrictions}</p>}
         </label>
         <label>
           Preferred Cuisines:
           <input type="text" value={preferredCuisines} onChange={(e) => setPreferredCuisines(e.target.value)} />
+          {errors.preferredCuisines && <p className="error">{errors.preferredCuisines}</p>}
         </label>
         <label>
           Calorie Intake:
           <input type="number" value={calorieIntake} onChange={(e) => setCalorieIntake(e.target.value)} />
+          {errors.calorieIntake && <p className="error">{errors.calorieIntake}</p>}
         </label>
         <button type="submit">Save Dietary Preferences</button>
       </form>
