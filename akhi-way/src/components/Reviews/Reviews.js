@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { addReview, updateReview, deleteReview } from "../Data/RestaurantsData";
 import "./Reviews.css";
 
 function Reviews({ reviews, restaurantId, currentUser }) {
+  const { t } = useTranslation();
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [order, setOrder] = useState("");
@@ -31,7 +33,7 @@ function Reviews({ reviews, restaurantId, currentUser }) {
     e.preventDefault();
 
     if (!rating || !order || !reviewText) {
-      setMessage("Please fill in all fields.");
+      setMessage(t("Please fill in all fields."));
       return;
     }
 
@@ -49,11 +51,11 @@ function Reviews({ reviews, restaurantId, currentUser }) {
       updatedReviews[editIndex] = newReview;
       setReviewList(updatedReviews);
       setEditIndex(null);
-      setMessage("Review updated successfully!");
+      setMessage(t("Review updated successfully!"));
     } else {
       addReview(restaurantId, newReview);
       setReviewList([...reviewList, newReview]);
-      setMessage("Review submitted successfully!");
+      setMessage(t("Review submitted successfully!"));
     }
 
     setRating(0);
@@ -65,7 +67,7 @@ function Reviews({ reviews, restaurantId, currentUser }) {
   const handleEdit = (index) => {
     const review = reviewList[index];
     if (review.author !== currentUser) {
-      setMessage("You can only edit your own reviews.");
+      setMessage(t("You can only edit your own reviews."));
       return;
     }
     setRating(review.rating);
@@ -78,43 +80,47 @@ function Reviews({ reviews, restaurantId, currentUser }) {
   const handleDelete = (index) => {
     const review = reviewList[index];
     if (review.author !== currentUser) {
-      setMessage("You can only delete your own reviews.");
+      setMessage(t("You can only delete your own reviews."));
       return;
     }
     deleteReview(restaurantId, index);
     const updatedReviews = reviewList.filter((_, i) => i !== index);
     setReviewList(updatedReviews);
-    setMessage("Review deleted successfully!");
+    setMessage(t("Review deleted successfully!"));
   };
 
   return (
     <div className="reviews-section">
-      <h2>Reviews</h2>
+      <h2>{t("Reviews")}</h2>
       {reviewList.map((review, index) => (
         <div key={index} className="restaurant-review">
           <div className="review-header">
             {renderStars(review.rating)}
-            <div className="review-date">Dined on {review.date}</div>
+            <div className="review-date">
+              {t("Dined on")} {review.date}
+            </div>
           </div>
           <div className="review-summary">
-            <span className="review-rating">Overall {review.rating}</span>
+            <span className="review-rating">
+              {t("Overall")} {review.rating}
+            </span>
             <span className="review-author">{review.author}</span>
           </div>
           <p className="review-text">{review.text}</p>
           {review.author === currentUser && (
             <>
               <button onClick={() => handleEdit(index)} className="edit-review-btn">
-                Edit
+                {t("Edit")}
               </button>
               <button onClick={() => handleDelete(index)} className="delete-review-btn">
-                Delete
+                {t("Delete")}
               </button>
             </>
           )}
         </div>
       ))}
       <div className="review-form">
-        <h3>How would you rate your experience?</h3>
+        <h3>{t("How would you rate your experience?")}</h3>
         <div className="stars">
           {[...Array(5)].map((star, index) => {
             index += 1;
@@ -133,19 +139,19 @@ function Reviews({ reviews, restaurantId, currentUser }) {
         </div>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>What did you order?</label>
-            <input type="text" value={order} onChange={(e) => setOrder(e.target.value)} placeholder="Enter text" />
+            <label>{t("What did you order?")}</label>
+            <input type="text" value={order} onChange={(e) => setOrder(e.target.value)} placeholder={t("Enter text")} />
           </div>
           <div className="form-group">
-            <label>Write your review</label>
+            <label>{t("Write your review")}</label>
             <textarea
               value={reviewText}
               onChange={(e) => setReviewText(e.target.value)}
-              placeholder="Enter text"
+              placeholder={t("Enter text")}
             ></textarea>
           </div>
           <button type="submit" className="submit-review-btn">
-            {editIndex !== null ? "UPDATE REVIEW" : "SUBMIT REVIEW"}
+            {editIndex !== null ? t("UPDATE REVIEW") : t("SUBMIT REVIEW")}
           </button>
         </form>
         {message && <p className="message">{message}</p>}

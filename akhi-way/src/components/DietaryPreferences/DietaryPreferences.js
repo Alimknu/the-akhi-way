@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import "./DietaryPreferences.css";
 import BackButton from "../BackButton/BackButton";
 
 const DietaryPreferences = () => {
+  const { t } = useTranslation();
   const [dietaryRestrictions, setDietaryRestrictions] = useState("");
   const [preferredCuisines, setPreferredCuisines] = useState("");
   const [calorieIntake, setCalorieIntake] = useState("");
@@ -23,13 +25,13 @@ const DietaryPreferences = () => {
   const validate = () => {
     const errors = {};
     if (!dietaryRestrictions.trim()) {
-      errors.dietaryRestrictions = "Dietary restrictions cannot be empty.";
+      errors.dietaryRestrictions = t("Dietary restrictions cannot be empty.");
     }
     if (!preferredCuisines.trim()) {
-      errors.preferredCuisines = "Preferred cuisines cannot be empty.";
+      errors.preferredCuisines = t("Preferred cuisines cannot be empty.");
     }
     if (!calorieIntake || calorieIntake <= 0) {
-      errors.calorieIntake = "Calorie intake must be a positive number.";
+      errors.calorieIntake = t("Calorie intake must be a positive number.");
     }
     return errors;
   };
@@ -49,42 +51,42 @@ const DietaryPreferences = () => {
     };
     localStorage.setItem(`${user}_dietaryPreferences`, JSON.stringify(preferences));
     setPreferencesSaved(true);
-    alert("Dietary preferences saved!");
+    alert(t("Dietary preferences saved!"));
   };
 
   return (
     <div className="dietary-preferences-container">
       <BackButton />
-      <h2>Dietary Preferences</h2>
+      <h2>{t("Dietary Preferences")}</h2>
       <form className="dietary-preferences-form" onSubmit={handleSubmit}>
         <label>
-          Dietary Restrictions:
+          {t("Dietary Restrictions")}:
           <input type="text" value={dietaryRestrictions} onChange={(e) => setDietaryRestrictions(e.target.value)} />
           {errors.dietaryRestrictions && <p className="error">{errors.dietaryRestrictions}</p>}
         </label>
         <label>
-          Preferred Cuisines:
+          {t("Preferred Cuisines")}:
           <input type="text" value={preferredCuisines} onChange={(e) => setPreferredCuisines(e.target.value)} />
           {errors.preferredCuisines && <p className="error">{errors.preferredCuisines}</p>}
         </label>
         <label>
-          Calorie Intake:
+          {t("Calorie Intake")}:
           <input type="number" value={calorieIntake} onChange={(e) => setCalorieIntake(e.target.value)} />
           {errors.calorieIntake && <p className="error">{errors.calorieIntake}</p>}
         </label>
-        <button type="submit">Save Dietary Preferences</button>
+        <button type="submit">{t("Save Dietary Preferences")}</button>
       </form>
       {preferencesSaved && (
         <div className="saved-preferences">
-          <h3>Saved Preferences</h3>
+          <h3>{t("Saved Preferences")}</h3>
           <p>
-            <strong>Dietary Restrictions:</strong> {dietaryRestrictions}
+            <strong>{t("Dietary Restrictions")}:</strong> {dietaryRestrictions}
           </p>
           <p>
-            <strong>Preferred Cuisines:</strong> {preferredCuisines}
+            <strong>{t("Preferred Cuisines")}:</strong> {preferredCuisines}
           </p>
           <p>
-            <strong>Calorie Intake:</strong> {calorieIntake}
+            <strong>{t("Calorie Intake")}:</strong> {calorieIntake}
           </p>
         </div>
       )}

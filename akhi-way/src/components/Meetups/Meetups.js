@@ -145,7 +145,7 @@ const Meetups = () => {
       )}
 
       <h2>{t("Plan a New Meetup")}</h2>
-      <div class="spacer"></div>
+      <div className="spacer"></div>
       <form className="meetup-form" onSubmit={handleSubmit}>
         <div className="progress-bar">
           <div className="progress" style={{ width: progressWidth() }}></div>
@@ -214,7 +214,7 @@ const Meetups = () => {
             </label>
           </div>
         )}
-        <div className="button-container">
+        <div className="form-navigation">
           <button type="button" className="previous-button" onClick={handlePreviousStep}>
             {t("Previous")}
           </button>

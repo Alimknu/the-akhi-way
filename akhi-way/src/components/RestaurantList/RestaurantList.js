@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import restaurants from "../Data/RestaurantsData";
 import "./RestaurantList.css";
 
 const RestaurantList = () => {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [priceRange, setPriceRange] = useState("");
 
@@ -27,24 +29,24 @@ const RestaurantList = () => {
 
   return (
     <div className="restaurant-list">
-      <h1>Search Restaurants</h1>
+      <h1>{t("Search Restaurants")}</h1>
       <div className="search-bar">
         <input
           type="text"
-          placeholder="Search by name or cuisine type"
+          placeholder={t("Search by name or cuisine type")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <select value={priceRange} onChange={(e) => setPriceRange(e.target.value)}>
-          <option value="">Select Price Range</option>
+          <option value="">{t("Select Price Range")}</option>
           <option value="$">$</option>
           <option value="$$">$$</option>
           <option value="$$$">$$$</option>
           <option value="$$$$">$$$$</option>
         </select>
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch}>{t("Search")}</button>
         <button onClick={handleClearFilters} className="clear-filters-btn">
-          Clear Filters
+          {t("Clear Filters")}
         </button>
       </div>
       <div className="restaurant-results">

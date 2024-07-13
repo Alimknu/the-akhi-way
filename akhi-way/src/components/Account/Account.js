@@ -1,18 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./Account.css";
 
 const Account = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="account-container">
-      <h2>Account Settings</h2>
+      <h2>{t("Account Settings")}</h2>
       <nav>
         <ul>
           <li>
-            <Link to="/dietary-preferences">Dietary Preferences</Link>
+            <Link to="/dietary-preferences">{t("Dietary Preferences")}</Link>
           </li>
           <li>
-            <Link to="/meetups">Meetups</Link>
+            <Link to="/meetups">{t("Meetups")}</Link>
           </li>
         </ul>
       </nav>
