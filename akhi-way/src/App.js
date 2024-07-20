@@ -22,23 +22,28 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
-        <main>
+        <header>
+          <Navbar />
+        </header>
+        <main role="main" aria-labelledby="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login onLogin={setIsLoggedIn} />} />
-            <Route path="/restaurants" element={<RestaurantList />} />
-            <Route path="/restaurant/:id" element={<RestaurantDetails />} />
-            <Route path="/aboutUs" element={<AboutUs />} />
-            <Route path="/account" element={isLoggedIn ? <Account /> : <Navigate to="/login" />} />
+            <Route path="/" element={<Home />} aria-labelledby="home-route" />
+            <Route path="/login" element={<Login onLogin={setIsLoggedIn} />} aria-labelledby="login-route" />
+            <Route path="/restaurants" element={<RestaurantList />} aria-labelledby="restaurant-list-route" />
+            <Route path="/restaurant/:id" element={<RestaurantDetails />} aria-labelledby="restaurant-details-route" />
+            <Route path="/aboutUs" element={<AboutUs />} aria-labelledby="about-us-route" />
+            <Route path="/account" element={isLoggedIn ? <Account /> : <Navigate to="/login" />} aria-labelledby="account-route" />
             <Route
               path="/dietary-preferences"
               element={isLoggedIn ? <DietaryPreferences /> : <Navigate to="/login" />}
+              aria-labelledby="dietary-preferences-route"
             />
-            <Route path="/meetups" element={isLoggedIn ? <Meetups /> : <Navigate to="/login" />} />
+            <Route path="/meetups" element={isLoggedIn ? <Meetups /> : <Navigate to="/login" />} aria-labelledby="meetups-route" />
           </Routes>
         </main>
-        <Footer />
+        <footer>
+          <Footer />
+        </footer>
       </div>
     </Router>
   );
