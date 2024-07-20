@@ -9,24 +9,28 @@ function Home() {
 
   return (
     <div className="home">
-      <div className="home-welcome">
-        <h1>{t("We'll show you how to eat, the Akhi Way!")}</h1>
+      <section className="home-welcome" aria-labelledby="home-welcome-heading">
+        <h1 id="home-welcome-heading">{t("We'll show you how to eat, the Akhi Way!")}</h1>
         <p>{t("Find halal restaurants near you")}</p>
-      </div>
-      <div className="home-featured">
-        <h2>{t("Featured Restaurants")}</h2>
+      </section>
+      <section className="home-featured" aria-labelledby="featured-restaurants-heading">
+        <h2 id="featured-restaurants-heading">{t("Featured Restaurants")}</h2>
         <div className="home-featured-list">
           {featuredRestaurants.map((restaurant) => (
-            <div key={restaurant.id} className="home-featured-item">
-              <h3>{restaurant.name}</h3>
+            <article
+              key={restaurant.id}
+              className="home-featured-item"
+              aria-labelledby={`restaurant-${restaurant.id}-name`}
+            >
+              <h3 id={`restaurant-${restaurant.id}-name`}>{restaurant.name}</h3>
               <p>{restaurant.description}</p>
               <p>
                 {t("Rating")}: {restaurant.rating}
               </p>
-            </div>
+            </article>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }
