@@ -15,7 +15,7 @@ function Navbar() {
     <nav className="navbar" aria-labelledby="navbar-title">
       <div className="navbar-name-container">
         <Link to="/" className="navbar-logo">
-          <img src={logo} alt="Logo" className="navbar-logo-img" />
+          <img src={logo} alt="The Akhi Way logo" className="navbar-logo-img" />
         </Link>
         <Link to="/" className="navbar-title" id="navbar-title">
           {t("The Akhi Way")}
